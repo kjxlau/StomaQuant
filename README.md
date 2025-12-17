@@ -1,5 +1,5 @@
 # Stomata Detection
-A dataset comprising of 1,000 microscopy images was gathered from the abaxial surfaces of barley and rice leaves. Barley leaf images were captured at 200x magnification, while rice leaf images were taken at 400x. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training and 20% for test validation. 
+A dataset comprising of 450 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training and 20% for test validation. 
 
 ## 1. Manual Annotation of Images with LabelMe
 Download and install app from https://github.com/wkentaro/labelme
