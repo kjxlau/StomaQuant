@@ -1,4 +1,4 @@
-# StomaQuant: Stomata Detection
+# StomaQuant
 A dataset comprising of 450 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x using an Olympus BX53 microscope. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training, 15% validation and 5% for testing. <br>Original dataset can be found in a Dryad repository at [10.5061/dryad.3j9kd51zr](10.5061/dryad.3j9kd51zr) </br>
 
 ## 1. Manual Annotation of Images with LabelMe
