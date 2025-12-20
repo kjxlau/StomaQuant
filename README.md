@@ -57,7 +57,7 @@ Execute python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yol
 Execute python 
 Unlike YOLOv12, image augmentation is not build into the RF-DETR pipeline. Therefore, augmentation must be performed as a preliminary step.
 
-## 7. Train RF-DETR model to compare performance against YOLOv12
+## 7. Train RF-DETR model
 Execute python [train_RF_DETR.py](https://github.com/kjxlau/stomata/blob/main/train_RF_DETR.py) to train model for 300 epochs, batch size of 4. 
 <br>Arrange your files such that the _annotations.coco.json is in the same folder as your images to train. </br>
 ```
