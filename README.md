@@ -50,11 +50,12 @@ YOLOv12 integrates Flash Attention to significantly reduce computation time duri
 <img width="1667" height="929" alt="image" src="https://github.com/user-attachments/assets/a2940670-67a4-474c-8138-48c1aafa27c5" />
 
 ## 5. Convert YOLO annotations to COCO format
-Run python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yolo_to_coco.py) 
+Execute python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yolo_to_coco.py) 
 <br>/path/to/images/train /path/to/labels/train /path/to/data.yaml /path/to/output/_annotations.coco.json </br>
 
 ## 6. Image Augmentation for RF-DETR training
-Run python 
+Execute python 
+Unlike YOLOv12, image augmentation is not build into the RF-DETR pipeline. Therefore, augmentation must be performed as a preliminary step.
 
 ## 7. Train RF-DETR model to compare performance against YOLOv12
 Run python [train_RF_DETR.py](https://github.com/kjxlau/stomata/blob/main/train_RF_DETR.py) to train model for 300 epochs, batch size of 4. 
