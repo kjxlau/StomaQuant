@@ -1,4 +1,4 @@
-# Stomata Detection
+# StomaQuant: Stomata Detection
 A dataset comprising of 450 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training, 15% validation and 5% for testing. 
 
 ## 1. Manual Annotation of Images with LabelMe
@@ -9,11 +9,11 @@ A JSON annotation file will be created for the class object which contains coord
 <img width="622" height="464" alt="labelme" src="https://github.com/user-attachments/assets/32442cec-06da-446b-a9e8-9fcefe2cdec0" />
 
 ## 2. JSON to Binary Mask script
-Run python [json_to_binary_mask.py](https://github.com/kjxlau/stomata/blob/main/json_to_binary_mask.py) 
+Execute python [json_to_binary_mask.py](https://github.com/kjxlau/stomata/blob/main/json_to_binary_mask.py) 
 <br> To convert JSON coordinate index files into binary mask in PNG format </br>
 
 ## 3. Convert segmented binary mask into YOLO format and initiate YOLOv12 model training
-Run python [train_yolov12_model.py](https://github.com/kjxlau/stomata/blob/main/train_yolov12_model.py)
+Execute python [train_yolov12_model.py](https://github.com/kjxlau/stomata/blob/main/train_yolov12_model.py)
 <br> Specify the number of epochs for training and augmentation techniques to use. </br>
 We can try 300 epochs for this stomata project, batch size of 4.
 Augmentation includes scaling, flipping left-right, flipping up-down and rotating at various angles for training.
@@ -58,7 +58,7 @@ Execute python
 Unlike YOLOv12, image augmentation is not build into the RF-DETR pipeline. Therefore, augmentation must be performed as a preliminary step.
 
 ## 7. Train RF-DETR model to compare performance against YOLOv12
-Run python [train_RF_DETR.py](https://github.com/kjxlau/stomata/blob/main/train_RF_DETR.py) to train model for 300 epochs, batch size of 4. 
+Execute python [train_RF_DETR.py](https://github.com/kjxlau/stomata/blob/main/train_RF_DETR.py) to train model for 300 epochs, batch size of 4. 
 <br>Arrange your files such that the _annotations.coco.json is in the same folder as your images to train. </br>
 ```
 /path/to/your/dataset/
