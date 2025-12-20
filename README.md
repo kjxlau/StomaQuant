@@ -1,5 +1,5 @@
 # Stomata Detection
-A dataset comprising of 450 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training and 20% for test validation. 
+A dataset comprising of 450 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x. Stomata within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training, 15% validation and 5% for testing. 
 
 ## 1. Manual Annotation of Images with LabelMe
 Download and install app from https://github.com/wkentaro/labelme
@@ -52,7 +52,11 @@ YOLOv12 integrates Flash Attention to significantly reduce computation time duri
 ## 5. Convert YOLO annotations to COCO format
 Run python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yolo_to_coco.py) 
 <br>/path/to/images/train /path/to/labels/train /path/to/data.yaml /path/to/output/_annotations.coco.json </br>
-## 6. Train RF-DETR model to compare performance against YOLOv12
+
+## 6. Image Augmentation for RF-DETR training
+Run python 
+
+## 7. Train RF-DETR model to compare performance against YOLOv12
 Run python [train_RF_DETR.py](https://github.com/kjxlau/stomata/blob/main/train_RF_DETR.py) to train model for 300 epochs, batch size of 4. 
 <br>Arrange your files such that the _annotations.coco.json is in the same folder as your images to train. </br>
 ```
