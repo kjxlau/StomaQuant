@@ -26,7 +26,7 @@ ann_path = os.path.join(SOURCE_DIR, '_annotations.coco.json')
 with open(ann_path, 'r') as f:
     coco_data = json.load(f)
 
-# --- 5. Prepare New Annotation Structure (THE FIX IS HERE) ---
+# --- 5. Prepare New Annotation Structure ---
 new_coco_data = {
     # Add placeholder info and licenses keys to ensure compliance
     "info": {
