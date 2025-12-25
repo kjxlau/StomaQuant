@@ -48,6 +48,7 @@ YOLOv12 integrates Flash Attention to significantly reduce computation time duri
 
 ## 4. Image analysis and stomatal traits inference
 <img width="1667" height="929" alt="image" src="https://github.com/user-attachments/assets/a2940670-67a4-474c-8138-48c1aafa27c5" />
+<br>Input the microscopic scale bar per pixel to allow the tool to calculate and perform stomatal size inference. </br>
 
 ## 5. Convert YOLO annotations to COCO format
 Execute python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yolo_to_coco.py) 
