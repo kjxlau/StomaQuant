@@ -7,6 +7,7 @@ Download and install app from https://github.com/wkentaro/labelme
 A JSON annotation file will be created for the class object which contains coordinates information of the polygon objects in 2D space in the corresponding image when you hit the 'save' button.
 
 <img width="622" height="464" alt="labelme" src="https://github.com/user-attachments/assets/32442cec-06da-446b-a9e8-9fcefe2cdec0" />
+<img width="622" height="457" alt="image" src="https://github.com/user-attachments/assets/1206df52-d9b0-4c23-a446-c5689c3d9cbd" />
 
 ## 2. JSON to Binary Mask script
 Execute python [json_to_binary_mask.py](https://github.com/kjxlau/stomata/blob/main/json_to_binary_mask.py) 
