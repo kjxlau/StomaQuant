@@ -30,17 +30,26 @@ Arrange your image and annotation files as follows:
 │   │   ├── image2.png
 │   │   └── ...
 │   └── val
-│       ├── image3.jpg
-│       ├── image4.png
+│   │   ├── image3.jpg
+│   │   ├── image4.png
+│   │   └── ...
+│   └── test
+│       ├── image5.jpg
+│       ├── image6.png
 │       └── ...
+
 └── labels
     ├── train
     │   ├── image1.txt
     │   ├── image2.txt
     │   └── ...
     └── val
-        ├── image3.txt
-        ├── image4.txt
+    │   ├── image3.txt
+    │   ├── image4.txt
+    │   └── ...
+    └── test
+        ├── image5.txt
+        ├── image6.txt
         └── ...
 ```
 
