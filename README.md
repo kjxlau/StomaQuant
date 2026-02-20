@@ -56,7 +56,7 @@ Arrange your image and annotation files as follows:
 YOLOv12 integrates Flash Attention to significantly reduce computation time during training and inference. This optimization is especially effective on modern GPU architectures, including Turing: NVIDIA T4, Quadro RTX series, Ampere: RTX 30 series, A30, A40, A100, Ada Lovelace: RTX 40 series, Hopper: H100, H200. While GPU acceleration is highly recommended for optimal performance, YOLOv12 remains compatible with CPU-based training. However, users should expect longer runtimes when operating without GPU support.
 
 <img width="1346" height="814" alt="image" src="https://github.com/user-attachments/assets/67dd1075-3305-4364-9a0b-9e0898933e9f" />
-Execute python [train_yoloseg.py](https://github.com/kjxlau/stomata/blob/main/train_yoloseg.py) to train YOLO-segmentation model.
+Execute python train_yoloseg.py to train YOLO-segmentation model.
 
 ## 4. Image analysis and stomatal traits inference
 <img width="1667" height="929" alt="image" src="https://github.com/user-attachments/assets/a2940670-67a4-474c-8138-48c1aafa27c5" />
