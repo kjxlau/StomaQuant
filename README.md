@@ -26,15 +26,15 @@ Arrange your image and annotation files as follows:
 ├── data.yaml
 ├── images
 │   ├── train
-│   │   ├── image1.jpg
+│   │   ├── image1.png
 │   │   ├── image2.png
 │   │   └── ...
 │   └── val
-│   │   ├── image3.jpg
+│   │   ├── image3.png
 │   │   ├── image4.png
 │   │   └── ...
 │   └── test
-│       ├── image5.jpg
+│       ├── image5.png
 │       ├── image6.png
 │       └── ...
 
