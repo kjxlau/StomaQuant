@@ -62,9 +62,9 @@ Execute python train_yoloseg.py to train YOLO-segmentation model.
 <img width="1667" height="929" alt="image" src="https://github.com/user-attachments/assets/a2940670-67a4-474c-8138-48c1aafa27c5" />
 <br>Input the microscopic scale bar per pixel to allow the tool to calculate and perform stomatal size inference. </br>
 
-## 5. Convert YOLO annotations to COCO format
-Execute python [yolo_to_coco.py](https://github.com/kjxlau/stomata/blob/main/yolo_to_coco.py) 
-<br>/path/to/images/train /path/to/labels/train /path/to/data.yaml /path/to/output/_annotations.coco.json </br>
+## 5. Convert labelme JSON annotations to COCO format
+Execute python [json_to_coco.py](https://github.com/kjxlau/stomata/blob/main/json_to_coco.py) 
+<br>--label_dir --class_file class.txt --output_file _annotations.coco.json </br>
 
 ## 6. Image Augmentation for RF-DETR training
 Execute python [image_augmentation.py](https://github.com/kjxlau/stomata/blob/main/image_augmentation.py)  
