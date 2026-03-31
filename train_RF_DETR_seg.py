@@ -1,26 +1,12 @@
 import os
-import sys
-import json
-import time
-import datetime
-from collections import defaultdict, deque
-
-import torch
 from PIL import Image
-
-# 1. FIX: Import the explicit segmentation class from the rfdetr package
-from rfdetr import RFDETRSegMedium
-from rfdetr.util.misc import NestedTensor, reduce_dict
-
-# Load Medium segmentation model (COCO pretrained)
-model = RFDETRSegMedium()
 
 train_dir_images = "./train" 
 
 coco_dataset = {
-    "images":[],
-    "annotations":[], # Reminder: Populate this with bounding boxes / segmentation masks!
-    "categories":[]
+    "images": [],
+    "annotations": [],
+    "categories": []
 }
 
 annotation_id = 0
@@ -34,27 +20,34 @@ if os.path.exists(train_dir_images):
             with Image.open(image_path) as image:
                 width, height = image.size
         
+                image_id = image_id_counter
+        
                 image_dict = {
-                    "id": image_id_counter,
+                    "id": image_id,
                     "width": width,
                     "height": height,
                     "file_name": image_fol,
                 }
         
                 coco_dataset["images"].append(image_dict)
+                
                 image_id_counter += 1 
                 
         except IOError:
             print(f"Skipping non-image file: {image_fol}")
             continue
-            
-    # Write the dataset to a JSON file so model.train() can find it
-    annotation_file = os.path.join(train_dir_images, "_annotations.coco.json")
-    with open(annotation_file, "w") as f:
-        json.dump(coco_dataset, f)
-    print(f"Saved custom COCO annotations to {annotation_file}")
 else:
     print(f"Error: Directory not found at path: {train_dir_images}")
+	
+import torch
+import time
+import datetime
+from collections import defaultdict, deque
+import rfdetr
+from rfdetr.util.misc import NestedTensor
+#import rfdetr.util.misc
+# Import the custom NestedTensor class
+#from rfdetr import NestedTensor
 
 class SmoothedValue(object):
     """Track a series of values and provide access to smoothed values."""
@@ -83,12 +76,13 @@ class SmoothedValue(object):
     def global_avg(self):
         return self.total / self.count
     def __str__(self):
+        # This is the corrected __str__ method
         return self.fmt.format(
             median=self.median,
             avg=self.avg,
             global_avg=self.global_avg,
-            max=max(self.deque) if len(self.deque) > 0 else 0,
-            value=self.deque[-1] if len(self.deque) > 0 else 0)
+            max=max(self.deque),
+            value=self.deque[-1])
 
 class MetricLogger(object):
     def __init__(self, delimiter="\t"):
@@ -106,9 +100,11 @@ class MetricLogger(object):
         return self.delimiter.join(f"{name}: {str(meter)}" for name, meter in self.meters.items())
 
     def synchronize_between_processes(self):
+        # This method will now be found correctly
         for meter in self.meters.values():
             if hasattr(meter, 'synchronize_between_processes'):
                  meter.synchronize_between_processes()
+
 
     def add_meter(self, name, meter):
         self.meters[name] = meter
@@ -157,7 +153,7 @@ def train_one_epoch_patched(model: torch.nn.Module, criterion: torch.nn.Module,
 
     for samples, targets in metric_logger.log_every(data_loader, print_freq, header):
         samples = samples.to(device)
-        targets =[{k: v.to(device) for k, v in t.items()} for t in targets]
+        targets = [{k: v.to(device) for k, v in t.items()} for t in targets]
 
         cloned_tensors = samples.tensors.clone()
         samples = NestedTensor(cloned_tensors, samples.mask)
@@ -168,7 +164,7 @@ def train_one_epoch_patched(model: torch.nn.Module, criterion: torch.nn.Module,
             weight_dict = criterion.weight_dict
             losses = sum(loss_dict[k] * weight_dict[k] for k in loss_dict.keys() if k in weight_dict)
 
-        loss_dict_reduced = reduce_dict(loss_dict)
+        loss_dict_reduced = rfdetr.util.misc.reduce_dict(loss_dict)
         losses_reduced_scaled = sum(v * weight_dict[k] for k, v in loss_dict_reduced.items() if k in weight_dict)
         loss_value = losses_reduced_scaled.item()
 
@@ -190,27 +186,17 @@ def train_one_epoch_patched(model: torch.nn.Module, criterion: torch.nn.Module,
     print("Averaged stats:", metric_logger)
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
-# --- SAFE DYNAMIC MONKEY PATCHING ---
-try:
-    import rfdetr.engine
-    rfdetr.engine.train_one_epoch = train_one_epoch_patched
-except ImportError:
-    pass # Will be handled by the dynamic loop below
+#import rfdetr.main
+#rfdetr.main.train_one_epoch = train_one_epoch_patched
 
-# Iterate loaded modules and dynamically override train_one_epoch wherever it was already imported
-for mod_name, mod in list(sys.modules.items()):
-    if mod_name.startswith('rfdetr.') and hasattr(mod, 'train_one_epoch'):
-        setattr(mod, 'train_one_epoch', train_one_epoch_patched)
+from rfdetr import RFDETRSegMedium
 
-history =[]
+model = RFDETRSegMedium()
+history = []
 
 def callback2(data):
     history.append(data)
 
-if not hasattr(model, "callbacks"):
-    model.callbacks = defaultdict(list)
-    
 model.callbacks["on_fit_epoch_end"].append(callback2)
 
-# specify the no of epochs and batch size for training
-model.train(dataset_dir="./train", epochs=300, batch_size=4, lr=1e-4)
+model.train(dataset_dir="./", epochs=300, batch_size=4, lr=1e-4)
