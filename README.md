@@ -1,5 +1,8 @@
 # StomaQuant
 A dataset comprising of 550 microscopy images were gathered from the adaxial and abaxial surfaces of barley, sugarcane and rice leaves. Barley and sugarcane leaf images were captured at 200x magnification, while rice leaf images were taken at 400x using an Olympus BX53 microscope. 100 images are with open stomata to help train the model with pore size and stomatal conductance calculations. Stomata and pores within these images were manually annotated using the LabelMe polygon tool, and the resulting JSON annotations were transformed into binary mask formats. These annotated images and corresponding masks served as training data for the YOLOv12 and RF-DETR object detection model. Dataset was split into 80% training, 15% validation and 5% for testing. This can be performed automatically using [YoloDataprep.py](https://github.com/kjxlau/stomata/blob/main/Yolo_Dataprep.py) 
+
+<img width="999" height="272" alt="Fig 1 Workflow" src="https://github.com/user-attachments/assets/08e50aac-398a-4cfb-8722-2ec1e6b711c3" />
+
 <br>Original dataset can be found in a Dryad repository at [10.5061/dryad.3j9kd51zr](10.5061/dryad.3j9kd51zr) </br>
 
 ## 1. Manual Annotation of Images with LabelMe
