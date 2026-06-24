@@ -4,6 +4,7 @@ A dataset comprising of 550 microscopy images were gathered from the adaxial and
 <img width="999" height="272" alt="Fig 1 Workflow" src="https://github.com/user-attachments/assets/08e50aac-398a-4cfb-8722-2ec1e6b711c3" />
 
 <br>Original dataset can be found in a Dryad repository at https://datadryad.org/dataset/doi:10.5061/dryad.3j9kd51zr </br>
+The software is hosted online at https://huggingface.co/spaces/TemasekLifesciLab/StomaQuant
 
 ## 1. Manual Annotation of Images with LabelMe
 Download and install app from https://github.com/wkentaro/labelme
